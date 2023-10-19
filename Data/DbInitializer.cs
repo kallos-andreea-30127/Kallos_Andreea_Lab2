@@ -7,9 +7,7 @@ namespace Kallos_Andreea_Lab2.Data
     {
         public static void Initialize(IServiceProvider serviceProvider)
         {
-            using (var context = new
-           LibraryContext(serviceProvider.GetRequiredService
-            <DbContextOptions<LibraryContext>>()))
+            using (var context = new LibraryContext(serviceProvider.GetRequiredService<DbContextOptions<LibraryContext>>()))
             {
                 if (context.Books.Any())
                 {
@@ -19,19 +17,16 @@ namespace Kallos_Andreea_Lab2.Data
                 new Book
                 {
                     Title = "Baltagul",
-                    Author = "Mihail Sadoveanu",
                     Price=Decimal.Parse("22")},
                
                 new Book
                 {
                     Title = "Enigma Otiliei",
-                    Author = "George Calinescu",
                     Price=Decimal.Parse("18")},
                
                 new Book
                 {
                     Title = "Maytrei",
-                    Author = "Mircea Eliade",
                     Price=Decimal.Parse("27")}
                
                 );
@@ -51,6 +46,23 @@ namespace Kallos_Andreea_Lab2.Data
                     BirthDate=DateTime.Parse("1969 - 07 - 08")}
                
                 );
+
+                context.Authors.AddRange(
+                    new Author
+                    {
+                        FirstName = "Mihail",
+                        LastName= "Sadoveanu"
+                    },
+                    new Author
+                    {
+                        FirstName = "George",
+                        LastName = "Calinescu"
+                    },
+                    new Author
+                    {
+                        FirstName = "Mircea",
+                        LastName = "Eliade"
+                    });
 
                 context.SaveChanges();
             }
