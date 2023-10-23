@@ -9,28 +9,51 @@ namespace Kallos_Andreea_Lab2.Data
         {
             using (var context = new LibraryContext(serviceProvider.GetRequiredService<DbContextOptions<LibraryContext>>()))
             {
-                if (context.Books.Any())
+                if (context.Authors.Any())
                 {
-                    return; // BD a fost creata anterior
+                    return;
                 }
+
+                context.Authors.AddRange(
+                    new Author
+                    {
+                        FirstName = "Mihail",
+                        LastName = "Sadoveanu"
+                    },
+                    new Author
+                    {
+                        FirstName = "George",
+                        LastName = "Calinescu"
+                    },
+                    new Author
+                    {
+                        FirstName = "Mircea",
+                        LastName = "Eliade"
+                    });
+
+              
                 context.Books.AddRange(
                 new Book
                 {
                     Title = "Baltagul",
-                    Price=Decimal.Parse("22")},
+                    Price=Decimal.Parse("22"),
+                    AuthorID=7},
                
                 new Book
                 {
                     Title = "Enigma Otiliei",
-                    Price=Decimal.Parse("18")},
+                    Price=Decimal.Parse("18"),
+                    AuthorID=8},
                
                 new Book
                 {
                     Title = "Maytrei",
-                    Price=Decimal.Parse("27")}
+                    Price=Decimal.Parse("27"),
+                    AuthorID=9}
                
                 );
 
+               
 
                 context.Customers.AddRange(
                 new Customer
@@ -46,23 +69,6 @@ namespace Kallos_Andreea_Lab2.Data
                     BirthDate=DateTime.Parse("1969 - 07 - 08")}
                
                 );
-
-                context.Authors.AddRange(
-                    new Author
-                    {
-                        FirstName = "Mihail",
-                        LastName= "Sadoveanu"
-                    },
-                    new Author
-                    {
-                        FirstName = "George",
-                        LastName = "Calinescu"
-                    },
-                    new Author
-                    {
-                        FirstName = "Mircea",
-                        LastName = "Eliade"
-                    });
 
                 context.SaveChanges();
             }
