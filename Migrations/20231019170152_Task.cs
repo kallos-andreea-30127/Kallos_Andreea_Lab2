@@ -18,7 +18,7 @@ namespace Kallos_Andreea_Lab2.Migrations
                 name: "AuthorID",
                 table: "Book",
                 type: "int",
-                nullable: false,
+                nullable: true,
                 defaultValue: 0);
 
             migrationBuilder.CreateTable(
