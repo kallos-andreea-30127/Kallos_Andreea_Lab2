@@ -37,19 +37,19 @@ namespace Kallos_Andreea_Lab2.Data
                 {
                     Title = "Baltagul",
                     Price=Decimal.Parse("22"),
-                    AuthorID=7},
+                    AuthorID=16},
                
                 new Book
                 {
                     Title = "Enigma Otiliei",
                     Price=Decimal.Parse("18"),
-                    AuthorID=8},
+                    AuthorID=17},
                
                 new Book
                 {
                     Title = "Maytrei",
                     Price=Decimal.Parse("27"),
-                    AuthorID=9}
+                    AuthorID=18}
                
                 );
 

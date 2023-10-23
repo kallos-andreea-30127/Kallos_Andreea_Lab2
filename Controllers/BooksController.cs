@@ -23,7 +23,7 @@ namespace Kallos_Andreea_Lab2.Controllers
         public async Task<IActionResult> Index()
         {
               return _context.Books != null ? 
-                          View(await _context.Books.ToListAsync()) :
+                          View(await _context.Books.Include(i => i.Author).ToListAsync()) :
                           Problem("Entity set 'LibraryContext.Books'  is null.");
         }
 
@@ -35,8 +35,7 @@ namespace Kallos_Andreea_Lab2.Controllers
                 return NotFound();
             }
 
-            var book = await _context.Books
-                .FirstOrDefaultAsync(m => m.ID == id);
+            var book = await _context.Books.Include(i => i.Author).FirstOrDefaultAsync(m => m.ID == id);
             if (book == null)
             {
                 return NotFound();
@@ -48,6 +47,7 @@ namespace Kallos_Andreea_Lab2.Controllers
         // GET: Books/Create
         public IActionResult Create()
         {
+            ViewData["Autori"] = new SelectList(_context.Authors, "AuthorID", "LastName");
             return View();
         }
 
@@ -70,6 +70,7 @@ namespace Kallos_Andreea_Lab2.Controllers
         // GET: Books/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+            ViewData["Autori"] = new SelectList(_context.Authors, "AuthorID", "LastName");
             if (id == null || _context.Books == null)
             {
                 return NotFound();

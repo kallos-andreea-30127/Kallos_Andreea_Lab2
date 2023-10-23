@@ -20,7 +20,10 @@
             @Html.DisplayNameFor(model => model.Author)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Author)
+            @{
+                var fullName = Model.Author.LastName + " " + Model.Author.FirstName;
+            }
+            @Html.DisplayFor(model => fullName)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Price)
