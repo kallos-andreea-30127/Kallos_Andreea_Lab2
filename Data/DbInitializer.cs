@@ -1,5 +1,7 @@
 ﻿using Kallos_Andreea_Lab2.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Policy;
+using Publisher = Kallos_Andreea_Lab2.Models.Publisher;
 
 namespace Kallos_Andreea_Lab2.Data
 {
@@ -9,67 +11,73 @@ namespace Kallos_Andreea_Lab2.Data
         {
             using (var context = new LibraryContext(serviceProvider.GetRequiredService<DbContextOptions<LibraryContext>>()))
             {
-                if (context.Authors.Any())
+                
+                var orders = new Order[]
+                 {
+                     new Order{BookID=9,CustomerID=2,OrderDate=DateTime.Parse("2021-02-25")},
+                     new Order{BookID=2,CustomerID=1,OrderDate=DateTime.Parse("2021-09-28")},
+                     new Order{BookID=8,CustomerID=1,OrderDate=DateTime.Parse("2021-10-28")},
+                     new Order{BookID=3,CustomerID=2,OrderDate=DateTime.Parse("2021-09-28")},
+                     new Order{BookID=9,CustomerID=2,OrderDate=DateTime.Parse("2021-09-28")},
+                     new Order{BookID=10,CustomerID=2,OrderDate=DateTime.Parse("2021-10-28")},
+                 };
+                foreach (Order e in orders)
                 {
-                    return;
+                    context.Orders.Add(e);
                 }
+                context.SaveChanges();
 
-                context.Authors.AddRange(
-                    new Author
-                    {
-                        FirstName = "Mihail",
-                        LastName = "Sadoveanu"
-                    },
-                    new Author
-                    {
-                        FirstName = "George",
-                        LastName = "Calinescu"
-                    },
-                    new Author
-                    {
-                        FirstName = "Mircea",
-                        LastName = "Eliade"
-                    });
+                var publishers = new Publisher[]
+                {
+                     new Publisher{PublisherName="Humanitas",Adress="Str. Aviatorilor, nr. 40, Bucuresti"},
+                     new Publisher{PublisherName="Nemira",Adress="Str. Plopilor, nr. 35, Ploiesti"},
+                     new Publisher{PublisherName="Paralela45",Adress="Str. Cascadelor, nr.22, Cluj-Napoca"},
+                };
 
-              
-                context.Books.AddRange(
-                new Book
+                foreach (Publisher p in publishers)
                 {
-                    Title = "Baltagul",
-                    Price=Decimal.Parse("22"),
-                    AuthorID=16},
-               
-                new Book
-                {
-                    Title = "Enigma Otiliei",
-                    Price=Decimal.Parse("18"),
-                    AuthorID=17},
-               
-                new Book
-                {
-                    Title = "Maytrei",
-                    Price=Decimal.Parse("27"),
-                    AuthorID=18}
-               
-                );
+                    context.Publishers.Add(p);
+                }
+                context.SaveChanges();
 
-               
+                var books = context.Books;
 
-                context.Customers.AddRange(
-                new Customer
+                var publishedbooks = new PublishedBook[]
                 {
-                    Name = "Popescu Marcela",
-                    Adress = "Str. Plopilor, nr. 24",
-                    BirthDate = DateTime.Parse("1979-09-01")
+                    new PublishedBook {
+                    BookID = books.Single(c => c.Title == "Maytrei").ID, PublisherID = publishers.Single(i => i.PublisherName == "Humanitas").ID
                 },
-                new Customer
+                new PublishedBook
                 {
-                    Name = "Mihailescu Cornel",
-                    Adress = "Str. Bucuresti, nr.45, ap. 2",
-                    BirthDate=DateTime.Parse("1969 - 07 - 08")}
-               
-                );
-
+                    BookID = books.Single(c => c.Title == "Enigma Otiliei").ID,
+                    PublisherID = publishers.Single(i => i.PublisherName == "Humanitas").ID
+                },
+                new PublishedBook
+                {
+                    BookID = books.Single(c => c.Title == "Baltagul").ID,
+                    PublisherID = publishers.Single(i => i.PublisherName == "Nemira").ID
+                },
+                new PublishedBook
+                {
+                    BookID = books.Single(c => c.Title == "Fata de hartie").ID,
+                    PublisherID = publishers.Single(i => i.PublisherName == "Paralela45").ID
+                },
+                new PublishedBook
+                {
+                    BookID = books.Single(c => c.Title == "Panza de paianjen").ID,
+                    PublisherID = publishers.Single(i => i.PublisherName == "Paralela45").ID
+                },
+                new PublishedBook
+                {
+                    BookID = books.Single(c => c.Title == "De veghe in lanul desecara").ID,
+                    PublisherID = publishers.Single(i => i.PublisherName == "Paralela45").ID
+                },
+                };
+            
+                foreach (PublishedBook pb in publishedbooks)
+                {
+                    context.PublishedBooks.Add(pb);
+                }
                 context.SaveChanges();
             }
         }
