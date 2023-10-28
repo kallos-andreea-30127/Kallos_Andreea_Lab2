@@ -11,7 +11,11 @@ namespace Kallos_Andreea_Lab2.Data
         {
             using (var context = new LibraryContext(serviceProvider.GetRequiredService<DbContextOptions<LibraryContext>>()))
             {
-                
+                if (context.Books.Any())
+                {
+                    return; // BD a fost creata anterior
+                }
+
                 var orders = new Order[]
                  {
                      new Order{BookID=9,CustomerID=2,OrderDate=DateTime.Parse("2021-02-25")},
