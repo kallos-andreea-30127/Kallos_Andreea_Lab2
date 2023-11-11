@@ -1,7 +1,7 @@
 ﻿using System.Security.Policy;
 using Publisher = Kallos_Andreea_Lab2.Models.Publisher;
 
-namespace Kallos_Andreea_Lab2.Models
+namespace LibraryModel.Models
 {
     public class PublishedBook
     {
