@@ -1,10 +1,10 @@
-﻿using LibraryModel.Models;
+﻿using Kallos_Andreea_Lab2.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using System.Security.Policy;
-using Publisher = LibraryModel.Models.Publisher;
+//using System.Security.Policy;
+//using Publisher = LibraryModel.Models.Publisher;
 
-namespace LibraryModel.Data
+namespace Kallos_Andreea_Lab2.Data
 {
     public class DbInitializer
     {

@@ -7,6 +7,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="LibraryModel\**" />
+    <Compile Remove="LibraryWebAPI\**" />
+    <Content Remove="LibraryModel\**" />
+    <Content Remove="LibraryWebAPI\**" />
+    <EmbeddedResource Remove="LibraryModel\**" />
+    <EmbeddedResource Remove="LibraryWebAPI\**" />
+    <None Remove="LibraryModel\**" />
+    <None Remove="LibraryWebAPI\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.12" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="7.0.12" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.12" />

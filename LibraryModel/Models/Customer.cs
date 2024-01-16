@@ -1,4 +1,4 @@
-﻿namespace LibraryModel.Models
+﻿namespace Kallos_Andreea_Lab2.Models
 {
     public class Customer
     {

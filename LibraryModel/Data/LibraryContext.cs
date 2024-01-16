@@ -1,9 +1,9 @@
-﻿using LibraryModel.Models;
+﻿using Kallos_Andreea_Lab2.Models;
 using Microsoft.EntityFrameworkCore;
-using Publisher = LibraryModel.Models.Publisher;
 
 
-namespace LibraryModel.Data
+
+namespace Kallos_Andreea_Lab2.Data
 {
     public class LibraryContext : DbContext
     {
