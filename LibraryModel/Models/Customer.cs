@@ -1,4 +1,6 @@
-﻿namespace Kallos_Andreea_Lab2.Models
+﻿using LibraryModel.Models;
+
+namespace Kallos_Andreea_Lab2.Models
 {
     public class Customer
     {
@@ -6,6 +8,9 @@
         public string Name { get; set; }
         public string Adress { get; set; }
         public DateTime BirthDate { get; set; }
+        public int CityID { get; set; }
+
         public ICollection<Order> Orders { get; set; }
+        public City City { get; set; }
     }
 }

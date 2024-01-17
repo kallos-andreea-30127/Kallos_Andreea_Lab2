@@ -1,4 +1,5 @@
 ﻿using Kallos_Andreea_Lab2.Models;
+using LibraryModel.Models;
 using Microsoft.EntityFrameworkCore;
 
 
@@ -17,6 +18,7 @@ namespace Kallos_Andreea_Lab2.Data
         public DbSet<Author> Authors { get; set; }
         public DbSet<Publisher> Publishers { get; set; }
         public DbSet<PublishedBook> PublishedBooks { get; set; }
+        public DbSet<City> Cities { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -28,6 +30,7 @@ namespace Kallos_Andreea_Lab2.Data
             modelBuilder.Entity<PublishedBook>().ToTable("PublishedBook");
             modelBuilder.Entity<PublishedBook>()
             .HasKey(c => new { c.BookID, c.PublisherID }); //configureaza cheia primara compusa
+            modelBuilder.Entity<City>().ToTable("City");
         }
     }
 
